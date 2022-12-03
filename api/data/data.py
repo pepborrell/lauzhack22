@@ -3,8 +3,8 @@ import pandas as pd
 
 
 class Song:
-    def __init__(self, name: str = ""):
-        self.uid = None
+    def __init__(self, uid):
+        self.uid = uid
 
 
 class User:
@@ -65,5 +65,5 @@ class DB:
             uid = self.search_engine.search(song_name)
         else:
             uid = self.spotify_sessions[user1].search(song_name)
-        song = Song(song_name, uid)
+        song = Song(uid)
         self.user2[user2].songs.append(song)
