@@ -33,7 +33,7 @@ def set_token(user_name, token):
     db.set_token(user_name, token)
     return 1
 
-@app.post("user/{user_name}/{song_id}")
+@app.post("user/{user}/{user_name}/{song_id}")
 def add_song(user, user_name, song_id):
-    db.add_song(user_name, song_id)
+    db.add_song(user, user_name, song_id)
     return 1
