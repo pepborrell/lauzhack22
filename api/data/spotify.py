@@ -1,20 +1,24 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
-class SpotifySession:
-    def __init__(self, USERNAME, token=None):
-        CLIENT_ID = 'f3986acfb3e44ef98aeed2d7aea7337b'#set at your developer account
-        CLIENT_SECRET = '9d8effdc87184d9d89e4fc316be9fccd' #set at your developer account
 
-        self.sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-                                   client_id = CLIENT_ID, 
-                                   client_secret = CLIENT_SECRET))
+class SpotifySession:
+    def __init__(self, token=None):
+        CLIENT_ID = "f3986acfb3e44ef98aeed2d7aea7337b"  # set at your developer account
+        CLIENT_SECRET = "9d8effdc87184d9d89e4fc316be9fccd"  # set at your developer account
+
+        self.sp = spotipy.Spotify(
+            auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+        )
 
     def search(self, song_name):
         song_list = self.sp.search(q=song_name, limit=1, type="track,artist")
         print(song_list)
-        return {'uri': song_list['tracks']['items'][0]['uri'], 'name': song_list['tracks']['items'][0]['name'], 'url': song_list['tracks']['items'][0]['external_urls']['spotify']}
-
+        return {
+            "uri": song_list["tracks"]["items"][0]["uri"],
+            "name": song_list["tracks"]["items"][0]["name"],
+            "url": song_list["tracks"]["items"][0]["external_urls"]["spotify"],
+        }
 
 
 # class SpotifySession:
@@ -28,10 +32,10 @@ class SpotifySession:
 #         SCOPE = "user-library-read,user-modify-playback-state,playlist-modify-public"
 
 #         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-#                                    username = USERNAME, 
-#                                    scope = SCOPE, 
-#                                    client_id = CLIENT_ID, 
-#                                    client_secret = CLIENT_SECRET, 
+#                                    username = USERNAME,
+#                                    scope = SCOPE,
+#                                    client_id = CLIENT_ID,
+#                                    client_secret = CLIENT_SECRET,
 #                                    redirect_uri = REDIRECT_URI))
 
 #     def search(self, song_name):
@@ -63,6 +67,6 @@ class SpotifySession:
 #         if new_playlist not in self.__get_playlists_names():
 #             user_id = self.sp.current_user()['id']
 #             sp.user_playlist_create(user_id, new_playlist, description="")
-        
+
 #         self.sp.current_user_saved_tracks_add(song_URI)
 #         return 1
