@@ -6,6 +6,11 @@ app = FastAPI()
 db = DB()
 
 
+@app.get("/")
+def root():
+    return {"Message": "Hello!"}
+
+
 @app.post("/create_user/{user_name}")
 def create_user(user_name: str):
     db.add_user(user_name)
