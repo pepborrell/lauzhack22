@@ -49,7 +49,7 @@ def add_follower(user_following, user_followed):
 
 @app.get("/dummy/")
 def dummy():
-    return 34
+    return "200"
 
 
 @app.post("/like_song/{user}/{song_uri}")
