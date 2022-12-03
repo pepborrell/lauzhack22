@@ -37,6 +37,7 @@ class DB:
         self.spotify_sessions = {}  # Interaction with spotify
         self.user_spotify_auth = {}
         self.search_engine = SpotifySession()
+        self.following = {}
 
     def set_token(self, user, token):
         self.user_spotify_auth[user] = token
@@ -44,6 +45,7 @@ class DB:
 
     def add_user(self, user_name):
         self.users[user_name] = User(user_name)
+        self.following[user_name] = []
 
     def get_user(self, user_name):
         return self.users[user_name]
@@ -69,3 +71,6 @@ class DB:
         #     uid = self.spotify_sessions[user1].search(song_name)
         song = Song(song_dict["uri"], song_dict["name"])
         self.users[user2].songs.append(song)
+
+    def add_follower(self, u_following, u_followed):
+        self.following[u_following].append(u_followed)

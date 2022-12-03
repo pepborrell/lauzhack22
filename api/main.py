@@ -23,17 +23,25 @@ def delete_song(user_name, song_id):
     return 1
 
 
-'''@app.post("/login/{user_name}")
+"""@app.post("/login/{user_name}")
 def login(user_name: str):
     db.login(user_name)
-    return 1'''
+    return 1"""
+
 
 @app.post("/set_token/{user_name}/{token}")
 def set_token(user_name, token):
     db.set_token(user_name, token)
     return 1
 
+
 @app.post("/add_song/{user}/{user_name}/{song_id}")
 def add_song(user, user_name, song_id):
     db.add_song(user, user_name, song_id)
+    return 1
+
+
+@app.post("add_follower/{user_following}/{user_followed}")
+def add_follower(user_following, user_followed):
+    db.add_follower(user_following, user_followed)
     return 1
