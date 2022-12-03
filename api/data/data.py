@@ -68,4 +68,4 @@ class DB:
         # else:
         #     uid = self.spotify_sessions[user1].search(song_name)
         song = Song(song_dict["uri"], song_dict["name"])
-        self.user2[user2].songs.append(song)
+        self.users[user2].songs.append(song)
