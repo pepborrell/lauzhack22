@@ -38,8 +38,9 @@ class DB:
         self.user_spotify_auth = self.read_spotify_auth()
 
     def read_spotify_auth(csv_name: str = "spotify_auth.csv"):
-        df = pd.read_csv(csv_name, sep=";")
-        return df.to_dict()
+        # df = pd.read_csv(csv_name, sep=";") # TODO: fix this
+        # return df.to_dict()
+        return {}
 
     def add_user(self, user_name):
         self.users[user_name] = User(user_name)
