@@ -41,7 +41,7 @@ def add_song(user, user_name, song_id):
     return 1
 
 
-@app.post("add_follower/{user_following}/{user_followed}")
+@app.post("/add_follower/{user_following}/{user_followed}")
 def add_follower(user_following, user_followed):
     db.add_follower(user_following, user_followed)
     return 1
@@ -50,3 +50,9 @@ def add_follower(user_following, user_followed):
 @app.get("/dummy/")
 def dummy():
     return 34
+
+
+@app.post("/like_song/{user}/{song_uri}")
+def like_song(user, song_uri):
+    db.like_song(user, song_uri)
+    return 1

@@ -3,16 +3,18 @@ import pandas as pd
 
 
 class Song:
-    def __init__(self, uri, name):
+    def __init__(self, uri, name, url):
         self.uri = uri
         self.name = name
+        self.url = url
 
 
 class User:
     def __init__(self, name: str = ""):
         self.name = name
         self.songs = []
-        self.friends = set()
+        self.following = set()
+        self.liked_songs = set()
 
     def get_name(self):
         return self.name
@@ -20,14 +22,17 @@ class User:
     def get_songs(self):
         return self.songs
 
-    def add_friend(self, friend):
-        self.friends.add(friend)
+    def add_followed(self, friend: str):
+        self.following.add(friend)
 
     def add_song(self, song: Song):
         self.songs.append(song)
 
     def delete_song(self, song: Song):
         self.songs.remove(song)
+
+    def like_song(self, song: Song):
+        self.liked_songs.add(song)
 
 
 class DB:
@@ -37,7 +42,6 @@ class DB:
         self.spotify_sessions = {}  # Interaction with spotify
         self.user_spotify_auth = {}
         self.search_engine = SpotifySession()
-        self.following = {}
 
     def set_token(self, user, token):
         self.user_spotify_auth[user] = token
@@ -45,7 +49,6 @@ class DB:
 
     def add_user(self, user_name):
         self.users[user_name] = User(user_name)
-        self.following[user_name] = []
 
     def get_user(self, user_name):
         return self.users[user_name]
@@ -69,8 +72,15 @@ class DB:
         #     uid = self.search_engine.search(song_name)
         # else:
         #     uid = self.spotify_sessions[user1].search(song_name)
-        song = Song(song_dict["uri"], song_dict["name"])
+        song = Song(song_dict["uri"], song_dict["name"], song_dict["url"])
         self.users[user2].songs.append(song)
 
     def add_follower(self, u_following, u_followed):
-        self.following[u_following].append(u_followed)
+        self.users[u_following].add_followed(u_followed)
+
+    def like_song(self, user, song_uri):
+        user_songs = self.users[user].songs
+        for song in user_songs:
+            if song.uri == song_uri:
+                self.users[user].like_songs(song)
+                return
