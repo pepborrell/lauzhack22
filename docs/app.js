@@ -43,6 +43,23 @@ var json = `{
         "url": "https://open.spotify.com/embed/track/2LlQb7Uoj1kKyGhlkBf9aC?"
     }
 }`;
+/*
+var username = localStorage.getItem("username"); 
+var apiLink = "https://lauzhack22-production.up.railway.app/users/" + username;
+var json2 = fetch("https://lauzhack22-production.up.railway.app/users/guifresa",{mode: 'no-cors'}).then((response) => response.json());
+console.log(JSON.stringify(json2));
+*/
+var json2 = fetch('https://lauzhack22-production.up.railway.app/users/guifresa', {
+    mode: 'no-cors',
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+    },
+})
+.then(response => response.text())
+.then(text => console.log(text))
+
+console.log(JSON.stringify(json2));
 
 function getSpotifyInstance(songUrl) {
     const audioBox = document.createElement("iframe");
