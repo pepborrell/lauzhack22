@@ -4,8 +4,7 @@ import pandas as pd
 
 class Song:
     def __init__(self, name: str = ""):
-        self.name = name.lower()
-        # self.id
+        self.uid = None
 
 
 class User:
@@ -35,12 +34,12 @@ class DB:
         self.users = {}
         self.songs = {}
         self.spotify_sessions = {}  # Interaction with spotify
-        self.user_spotify_auth = self.read_spotify_auth()
+        self.user_spotify_auth = {}
+        self.search_engine = SpotifySession()
 
-    def read_spotify_auth(csv_name: str = "spotify_auth.csv"):
-        # df = pd.read_csv(csv_name, sep=";") # TODO: fix this
-        # return df.to_dict()
-        return {}
+    def set_token(self, user, token):
+        self.user_spotify_auth[user] = token
+        self.spotify_sessions[user] = SpotifySession(token)
 
     def add_user(self, user_name):
         self.users[user_name] = User(user_name)
@@ -54,6 +53,17 @@ class DB:
         user.delete_song(song)
         self.users[user_name] = user
 
-    def login(self, user_name: str):
+    '''    
+        def login(self, user_name: str):
         spotify_token = self.user_spotify_auth[user_name]
         self.spotify_sessions[user_name] = SpotifySession(spotify_token)
+    '''
+    
+    def add_song(self, user1, user2, song_name):
+        song_name = song_name.lower()
+        if user1 not in self.spotify_sessions:
+            uid = self.search_engine.search(song_name)
+        else:
+            uid = self.spotify_sessions[user1].search(song_name)
+        song = Song(song_name, uid)
+        self.user2[user2].songs.append(song)
