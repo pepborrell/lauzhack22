@@ -1,4 +1,5 @@
 'use strict'; 
+document.getElementById('login').style.display='none'
 /*
 const switcher = document.querySelector('.btn');
 const className = document.body.className; 
@@ -70,3 +71,8 @@ document.getElementById('friends_music').appendChild(box);
 for (const song in mydata) {
 createSongDiv(mydata[song]);
 }
+
+const usernameMessage = document.createElement("div");
+usernameMessage.id = "myUsername"; 
+usernameMessage.innerText=localStorage.getItem("username");
+document.getElementById("usernameMessage").appendChild(usernameMessage); 

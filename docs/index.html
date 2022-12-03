@@ -6,8 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lauzhack project</title>
   <link rel="stylesheet" href="main.css">
+  <script defer src="./auth.js"></script>
+  <script defer src="./init.js"></script>
 </head>
 <body>
+<div id = "login">
+    <form method="post">
+        Name: <input type="text" name="name"><br>
+        <input type="submit">
+        </form>
+</div>
+    <div id = "content">
     <div class = "titlebox">Lauzhack project</div>
     <div class="row">
         <div class="column" id = "friends_music">
@@ -16,15 +25,14 @@
 </div>
         </div>
         <div class="column">
-            <div class ="box">
+            <div class ="box" id = "usernameMessage">
                 ZEN ZONE
             </div>
-
-            <!--<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5fVw7TjMRqG183RyPIUoba?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>-->
         </div>
     </div>
     <script type="text/javascript" src="data.json"></script>
     <script type="text/javascript" src="app.js"></script>
     <noscript>You need to have Javascript enabled in your browser</noscript>
+</div>
 </body>
 </html>
