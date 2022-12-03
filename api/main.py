@@ -45,3 +45,8 @@ def add_song(user, user_name, song_id):
 def add_follower(user_following, user_followed):
     db.add_follower(user_following, user_followed)
     return 1
+
+
+@app.get("/dummy/")
+def dummy():
+    return 34
