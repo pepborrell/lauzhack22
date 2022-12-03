@@ -21,3 +21,9 @@ def get_user(user_name: str):
 def delete_song(user_name, song_id):
     db.delete_song(user_name, song_id)
     return 1
+
+
+@app.post("/login/{user_name}")
+def login(user_name: str):
+    db.login(user_name)
+    return 1
