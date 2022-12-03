@@ -1,5 +1,4 @@
 from .spotify import SpotifySession
-import pandas as pd
 
 
 class Song:
