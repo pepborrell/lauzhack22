@@ -72,5 +72,4 @@ def like_song(user, song_uri):
 
 @app.get("/liked_songs/{user}")
 def get_liked_songs(user):
-    liked_songs = db.get_liked_songs(user)
-    return [{"title": song.name, "url": song.url, "uri": song.uri} for song in liked_songs]
+    db.get_user(user).get_liked_songs()

@@ -17,7 +17,7 @@ class User:
         self.name = name
         self.songs = []
         self.following = set()
-        self.liked_songs = set()
+        self.liked_songs = []
 
     def get_name(self):
         return self.name
@@ -35,7 +35,10 @@ class User:
         self.songs.remove(song)
 
     def like_song(self, song: Song):
-        self.liked_songs.add(song)
+        self.liked_songs.append(song)
+
+    def get_liked_songs(self):
+        return self.liked_songs
 
 
 class DB:
@@ -87,6 +90,3 @@ class DB:
             if song.uri == song_uri:
                 self.users[user].like_song(song)
                 return
-
-    def get_liked_songs(self, user: str):
-        return self.users[user].liked_songs
