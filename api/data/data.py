@@ -2,10 +2,14 @@ from .spotify import SpotifySession
 
 
 class Song:
-    def __init__(self, uri: str, name: str, url: str):
+    def __init__(self, uri: str, name: str, url: str, embed_url: str = None):
         self.uri = uri
         self.title = name
         self.url = url
+        self.embed_url = embed_url
+        if self.embed_url is None:
+            track_id = self.uri.split(":")[-1]
+            self.embed_url = "https://open.spotify.com/embed/track/" + track_id
 
 
 class User:
