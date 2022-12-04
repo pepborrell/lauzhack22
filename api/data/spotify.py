@@ -1,7 +1,19 @@
 import os
 
 import spotipy
+from spotipy.cache_handler import CacheHandler
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
+
+
+class DummyCacheHandler(CacheHandler):
+    def __init__(self, username: str) -> None:
+        self.password = os.environ["SPOTIPY_CACHE_" + username]
+
+    def get_cached_token(self):
+        return self.password
+
+    def save_token_to_cache(self, token_info):
+        return NotImplementedError()
 
 
 class SpotifySession:
@@ -38,7 +50,7 @@ class UserSpotifySession:
                 client_id=CLIENT_ID,
                 client_secret=CLIENT_SECRET,
                 redirect_uri=REDIRECT_URI,
-                cache_path="./cache/.cache-" + USERNAME,
+                cache_path=DummyCacheHandler(USERNAME),
             )
         )
 

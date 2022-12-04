@@ -17,7 +17,7 @@ class DB:
     def add_user(self, user_name: str):
         if user_name not in self.users:
             self.users[user_name] = User(user_name)
-        # self.set_token(user_name)
+        self.set_token(user_name)
 
     def get_user(self, user_name: str):
         return self.users[user_name]
