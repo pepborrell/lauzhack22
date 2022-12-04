@@ -65,6 +65,19 @@ function createSongDiv(songData) {
     box.id = "song";
     //box.innerText="Sent to you by " + songData['recommender'];
     box.appendChild(getSpotifyInstance(songData["embed_url"]));
+    
+
+    const icon = document.createElement("img");
+    icon.src = 'icons/plus.png';
+    icon.addEventListener('click', function () {
+        var songUri = songData["uri"];
+        var songRec = songData["recommender"];
+        fetch(apiUrl+"add_uri/"+songRec+"/"+userName+"/"+songUri, {
+            method: 'POST'
+        });
+    });
+    icon.className = 'icon';
+    box.prepend(icon)
     document.getElementById('feed_div').appendChild(box);
 }
 
@@ -86,4 +99,5 @@ function generatePost(postData) {
     createUserNameDiv(postData["username"]); 
     createTextDiv(postData["text"]); 
     createSongDiv(postData["song"]);
+
 }

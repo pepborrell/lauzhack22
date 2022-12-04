@@ -24,3 +24,9 @@
     color: var(--black);
     margin: auto; 
   }
+  .icon {
+    float: right;
+    width: 4%;
+    height: 4%;
+    padding-bottom: 1%;
+  }
