@@ -103,3 +103,8 @@ def add_post(username: str, text: str, song: str):
 @app.get("/get_feed/{username}")
 def get_feed(username):
     return db.get_feed()
+
+
+@app.delete("/delete_feed")
+def delete_feed():
+    db.delete_feed()

@@ -30,3 +30,6 @@ class Feed:
     def get_feed(self, limit=20) -> List[Post]:
         n = len(self.posts)
         return self.posts[max(-n, -limit) :][::-1]
+
+    def delete_feed(self):
+        self.posts = []

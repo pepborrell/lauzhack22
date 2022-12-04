@@ -69,3 +69,6 @@ class DB:
 
     def get_feed(self, limit: int = 20):
         return self.feed.get_feed(limit=limit)
+
+    def delete_feed(self):
+        self.feed.delete_feed()
