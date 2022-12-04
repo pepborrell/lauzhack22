@@ -26,7 +26,7 @@ def create_user(user_name: str):
 
 @app.get("/get_user/{user_name}")
 def get_user(user_name: str):
-    return {"user_name": user_name, "songs": db.get_user(user_name).get_songs()}
+    return [db.get_user(user_name).get_songs()]
 
 
 @app.delete("/delete_song/{user_name}/{song_id}")
@@ -68,3 +68,9 @@ def dummy():
 def like_song(user, song_uri):
     db.like_song(user, song_uri)
     return 1
+
+
+@app.get("/liked_songs/{user}")
+def get_liked_songs(user):
+    liked_songs = db.get_liked_songs(user)
+    return [{"title": song.name, "url": song.url, "uri": song.uri} for song in liked_songs]

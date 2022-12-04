@@ -4,7 +4,7 @@ from .spotify import SpotifySession
 class Song:
     def __init__(self, uri: str, name: str, url: str):
         self.uri = uri
-        self.name = name
+        self.title = name
         self.url = url
 
 
@@ -83,3 +83,6 @@ class DB:
             if song.uri == song_uri:
                 self.users[user].like_song(song)
                 return
+
+    def get_liked_songs(self, user: str):
+        return self.users[user].liked_songs
