@@ -16,7 +16,7 @@ class Post:
     def __init__(self, username: str, text: str, song: str) -> None:
         self.username = username
         self.text = text
-        song_dict = SpotifySession().search_engine.search(song)
+        song_dict = SpotifySession().search(song)
         self.song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], recommender=self.username)
 
 
