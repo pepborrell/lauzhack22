@@ -57,7 +57,6 @@ function getSpotifyInstance(songUrl) {
     return audioBox
 };
 
-var mydata = JSON.parse(json);
 var i = 0;
 function createSongDiv(songData) {
     const box = document.createElement("div");
