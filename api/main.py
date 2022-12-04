@@ -1,4 +1,5 @@
-from data.data import DB
+from data.db import DB
+from data.feed import Post, PostBody
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -66,13 +67,13 @@ def add_follower(user_following, user_followed):
 def queue_song(user, song_uri):
     db.queue_song(user, song_uri)
     return 1
-    
+
 
 @app.post("/queue_all/{user}")
 def queue_all(user):
     db.queue_all(user)
     return 1
-    
+
 
 @app.post("/like_song/{user}/{song_uri}")
 def like_song(user, song_uri):
@@ -83,3 +84,13 @@ def like_song(user, song_uri):
 @app.get("/liked_songs/{user}")
 def get_liked_songs(user):
     db.get_user(user).get_liked_songs()
+
+
+@app.post("/add_post/")
+def add_post(post: PostBody):
+    db.add_post(Post(**post.dict()))
+
+
+@app.get("/get_feed/")
+def get_feed():
+    return db.get_feed()
