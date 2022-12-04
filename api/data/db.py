@@ -11,7 +11,7 @@ class DB:
         self.search_engine = SpotifySession()
         self.feed = Feed()
 
-    def set_token(self, user: str, token: str):
+    def set_token(self, user: str):
         self.spotify_sessions[user] = UserSpotifySession(user)
 
     def add_user(self, user_name: str):
