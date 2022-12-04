@@ -2,7 +2,7 @@ from .spotify import SpotifySession
 
 
 class Song:
-    def __init__(self, uri: str, name: str, url: str, embed_url: str = None, sender: str = None):
+    def __init__(self, uri: str, name: str, url: str, embed_url: str = None, recommender: str = None):
         self.uri = uri
         self.title = name
         self.url = url
@@ -10,7 +10,7 @@ class Song:
         if self.embed_url is None:
             track_id = self.uri.split(":")[-1]
             self.embed_url = "https://open.spotify.com/embed/track/" + track_id
-        self.sender = sender
+        self.recommender = recommender
 
 
 class User:
@@ -80,7 +80,7 @@ class DB:
         #     uid = self.search_engine.search(song_name)
         # else:
         #     uid = self.spotify_sessions[user1].search(song_name)
-        song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], sender=user1)
+        song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], recommender=user1)
         self.users[user2].songs.append(song)
 
     def add_follower(self, u_following: str, u_followed: str):
