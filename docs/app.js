@@ -49,17 +49,23 @@ var apiLink = "https://lauzhack22-production.up.railway.app/users/" + username;
 var json2 = fetch("https://lauzhack22-production.up.railway.app/users/guifresa",{mode: 'no-cors'}).then((response) => response.json());
 console.log(JSON.stringify(json2));
 */
-var json2 = fetch('https://lauzhack22-production.up.railway.app/users/guifresa', {
-    mode: 'no-cors',
-    method: 'GET',
-    headers: {
-        'Accept': 'application/json',
-    },
-})
-.then(response => response.text())
-.then(text => console.log(text))
+console.log("-----Trying to fetch data-------");
+var userName = localStorage.getItem("username"); 
+var getUser = 'https://lh22.up.railway.app/get_user/' + userName; 
 
-console.log(JSON.stringify(json2));
+var json2 = fetch(getUser)
+.then((response) => response.json())
+.then(a => { 
+    var jsObject = JSON.parse(JSON.stringify(a)); 
+    generateUserList(jsObject); 
+ });
+//console.log(json2);
+
+//.then(a => {    JSON.parse(a);});
+//console.log(json2);
+//console.log(JSON.parse(json2))//.PromiseResult);
+//.then(data => {return data;});
+console.log("----Data supposedly fetched-----"); 
 
 function getSpotifyInstance(songUrl) {
     const audioBox = document.createElement("iframe");
@@ -78,15 +84,17 @@ function getSpotifyInstance(songUrl) {
 var mydata = JSON.parse(json);
 var i = 0;
 function createSongDiv(songData) {
-const box = document.createElement("div");
-box.id = "song";
-box.innerText=songData["title"]
-box.appendChild(getSpotifyInstance(songData["url"]));
-document.getElementById('friends_music').appendChild(box);
+    const box = document.createElement("div");
+    box.id = "song";
+    box.innerText=songData["title"]
+    box.appendChild(getSpotifyInstance(songData["embed_url"]));
+    document.getElementById('friends_music').appendChild(box);
 }
 
-for (const song in mydata) {
-createSongDiv(mydata[song]);
+function generateUserList(data) {
+    for (const song in data) {
+        createSongDiv(data[song]);
+    }
 }
 
 const usernameMessage = document.createElement("div");
