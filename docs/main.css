@@ -58,6 +58,13 @@
   font-size: 30pt;
 }
 
+.title {
+  font-family: helvetica;
+  font-weight: bold;
+  font-size: 14pt;
+  color: var(--black);
+  text-align: center;
+}
 
 
 
@@ -113,4 +120,36 @@ li {
 .btn {
   color: var(--black);
   background: var(--white);
+}
+
+.input-text {
+  text-align: center;
+  display: block;
+}
+
+#song_name {
+  width: 50%;
+  font-size: 14pt;
+}
+
+#send_to_friend {
+  width: 50%;
+  font-size: 14pt;
+}
+
+.post_btn {
+  margin: 0 auto;
+  width: 30%;
+  background-color: #0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-family: helvetica;
+  font-weight: bold;
+}
+
+#post_button {
+  font-size: 14pt;
+  text-align: center;
 }

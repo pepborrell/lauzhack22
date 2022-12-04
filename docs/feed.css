@@ -1,6 +1,13 @@
 .post_btn {
-  color: var(--black);
-  background: var(--white);
+  margin: 0 auto;
+  width: 30%;
+  background-color: #0a0a23;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-family: helvetica;
+  font-weight: bold;
 }
 
 .feed_div {
@@ -17,6 +24,17 @@
   color: var(--black);
   width: 85%;
   margin: auto;
+}
+
+.post_smth {
+  padding: 0.75%;
+  font-family: helvetica;
+  font-weight: bold;
+  font-size: 14pt;
+  color: var(--black);
+  width: 50%;
+  margin: auto;
+  text-align: center;
 }
 
 .post_header {
@@ -45,4 +63,24 @@
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   font-size: 30pt;
+}
+
+.input-text {
+  text-align: center;
+  display: block;
+}
+
+#feed_text {
+  width: 50%;
+  font-size: 14pt;
+}
+
+#feed_song {
+  width: 50%;
+  font-size: 14pt;
+}
+
+#post_button {
+  font-size: 14pt;
+  text-align: center;
 }
