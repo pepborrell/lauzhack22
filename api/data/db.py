@@ -11,13 +11,13 @@ class DB:
         self.search_engine = SpotifySession()
         self.feed = Feed()
 
-    def set_token(self, user: str, token: str):
+    def set_token(self, user: str):
         self.spotify_sessions[user] = UserSpotifySession(user)
 
     def add_user(self, user_name: str):
         if user_name not in self.users:
             self.users[user_name] = User(user_name)
-        # self.set_token(user_name)
+        self.set_token(user_name)
 
     def get_user(self, user_name: str):
         return self.users[user_name]
@@ -49,6 +49,7 @@ class DB:
         self.users[u_following].add_followed(u_followed)
 
     def like_song(self, user: str, song_uri: str):
+        print(self.spotify_sessions[user])
         self.spotify_sessions[user].like_song(song_uri)
 
     def queue_song(self, user: str, song_uri: str):

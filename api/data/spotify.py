@@ -1,7 +1,24 @@
+import json
 import os
 
 import spotipy
+from spotipy.cache_handler import CacheHandler
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
+
+
+class DummyCacheHandler(CacheHandler):
+    def __init__(self, username: str) -> None:
+        if "spotipy_cache_" + username not in os.environ:
+            raise NameError()
+        json_str = os.environ["spotipy_cache_" + username]
+        json_str = json_str.replace("'", '"')
+        self.pass_dict = json.loads(json_str)
+
+    def get_cached_token(self):
+        return self.pass_dict
+
+    def save_token_to_cache(self, token_info):
+        return NotImplementedError()
 
 
 class SpotifySession:
@@ -38,7 +55,7 @@ class UserSpotifySession:
                 client_id=CLIENT_ID,
                 client_secret=CLIENT_SECRET,
                 redirect_uri=REDIRECT_URI,
-                cache_path="./cache/.cache-" + USERNAME,
+                cache_handler=DummyCacheHandler(USERNAME),
             )
         )
 
@@ -55,6 +72,7 @@ class UserSpotifySession:
         return 1
 
     def like_song(self, song_URI):
+        print(song_URI)
         self.sp.current_user_saved_tracks_add([song_URI])
         return 1
 
