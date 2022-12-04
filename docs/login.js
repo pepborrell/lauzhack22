@@ -33,7 +33,7 @@ validateonSubmit() {
 }
 
 validateFields(field) {
-    localStorage.setItem("username",field.value);
+        localStorage.setItem("username",field.value);
     // remove any whitespace and check to see if the field is blank, if so return false
     if (field.value.trim() === "") {
         // set the status based on the field, the field label, and if it is an error message

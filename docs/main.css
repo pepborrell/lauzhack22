@@ -84,13 +84,6 @@ li {
     --btnBackground: var(--white)
   }
   .btn {
-    position: absolute;
-    top: 20px;
-    left: 250px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: none;
-    color: var(--btnFontColor);
-    background: var(--btnBackground);
+    color: var(--black);
+    background: var(--white);
   }

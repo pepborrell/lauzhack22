@@ -51,8 +51,15 @@ console.log(JSON.stringify(json2));
 */
 console.log("-----Trying to fetch data-------");
 var userName = localStorage.getItem("username"); 
-var getUser = 'https://lh22.up.railway.app/get_user/' + userName; 
+console.log(userName); 
+var apiUrl = 'https://lh22.up.railway.app/'
+var getUser = apiUrl + 'get_user/' + userName; 
+var createUser = apiUrl + 'create_user/' + userName;
 
+
+fetch(createUser,{
+    method: 'POST'
+});
 var json2 = fetch(getUser)
 .then((response) => response.json())
 .then(a => { 
@@ -81,12 +88,14 @@ function getSpotifyInstance(songUrl) {
     return audioBox
 }
 
+
+
 var mydata = JSON.parse(json);
 var i = 0;
 function createSongDiv(songData) {
     const box = document.createElement("div");
     box.id = "song";
-    box.innerText=songData["title"]
+    box.innerText="Sent to you by " + songData['recommender'];
     box.appendChild(getSpotifyInstance(songData["embed_url"]));
     document.getElementById('friends_music').appendChild(box);
 }
@@ -96,6 +105,18 @@ function generateUserList(data) {
         createSongDiv(data[song]);
     }
 }
+
+const adder = document.querySelector('.btn');
+adder.addEventListener('click', function() {
+    console.log("button clicked"); 
+    var songId = encodeURI(document.getElementById('song_name').value);
+    var userFriend = document.getElementById('send_to_friend').value; 
+    var addSong = apiUrl + 'add_song/' + userName + '/' + userFriend + '/' + songId;
+    console.log(addSong);
+    fetch(addSong,{
+        method: 'POST'
+    }).then(a => { window.location.reload(true);});
+});
 
 const usernameMessage = document.createElement("div");
 usernameMessage.id = "myUsername"; 
