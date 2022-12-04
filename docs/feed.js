@@ -84,7 +84,7 @@ function createSongDiv(songData) {
 function createTextDiv(textData) {
     const box = document.createElement("div");
     box.className = "post_text"; 
-    box.innerText = textData; 
+    box.textContent = JSON.stringify(textData); 
     document.getElementById('feed_div').appendChild(box); 
 }
 

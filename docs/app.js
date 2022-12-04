@@ -46,7 +46,7 @@ var json2 = fetch(getUser)
 function getSpotifyInstance(songUrl) {
     const audioBox = document.createElement("iframe");
     audioBox.id = "audio";
-    audioBox.style="border-radius:12px";
+    audioBox.style="border-radius:12px; margin-top: 2.5%; margin-bottom: 2.5%";
     audioBox.src = songUrl;
     audioBox.width="100%";
     audioBox.height="100px";
@@ -62,7 +62,11 @@ function createSongDiv(songData) {
     const box = document.createElement("div");
     box.className = "song_box";
     box.id = "song";
-    box.innerText="Sent to you by " + songData['recommender'];
+    box.innerText="Sent to you by ";
+    var name = document.createElement("span");
+    name.className="sender";
+    name.innerText=songData['recommender'];
+    box.appendChild(name); 
     box.appendChild(getSpotifyInstance(songData["embed_url"]));
     document.getElementById('friends_music').appendChild(box);
 

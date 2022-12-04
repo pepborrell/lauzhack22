@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
     <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="main.css">
     <script defer src="./login.js"></script>
 </head>
-<body class="login">
-    <div class="container">
-        <h2 class="text-center">Login</h2>
-        <br>
+<body>
+    <div class="center_absolute">
+        <span class="titleNormal">Welcome to <span class="titleQueue">Queued</span></span>
+        <br><br>
         <form action="./main.html" class="loginForm">
-            <div class="input-group">
-                <label for="username" class="label">Username</label>
-                <input type="text" id="username" class="input">
+            <div>
+                <input type="text" id="username" class="form-field" placeholder="Type your username">
                 <span class="error-message"></span>
             </div>
-            <button class="button" type="submit">Login</button>
+            <center>
+                <button class="button" type="submit">Login</button>
+            </center>
         </form>
     </div>
 </body>
