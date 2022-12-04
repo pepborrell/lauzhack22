@@ -2,6 +2,7 @@ from data.db import DB
 from data.feed import Post, PostBody
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 app = FastAPI()
 app.add_middleware(
@@ -11,6 +12,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(HTTPSRedirectMiddleware)
 db = DB()
 
 
