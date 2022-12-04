@@ -32,7 +32,7 @@ class User:
     def delete_song(self, song_uri: str):
         for song in self.songs:
             if song_uri == song.uri:
-                self.songs.delate(song)
+                self.songs.delete(song)
 
     def like_song(self, song: Song):
         self.liked_songs.append(song)
