@@ -45,6 +45,11 @@ class DB:
         song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], recommender=user1)
         self.users[user2].songs.append(song)
 
+    def add_uri(self, user1: str, user2: str, song_uri: str):
+        song_dict = self.search_engine.search_uri(song_uri)
+        song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], recommender=user1)
+        self.users[user2].songs.append(song)
+
     def add_follower(self, u_following: str, u_followed: str):
         self.users[u_following].add_followed(u_followed)
 

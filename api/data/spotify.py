@@ -32,11 +32,19 @@ class SpotifySession:
 
     def search(self, song_name):
         song_list = self.sp.search(q=song_name, limit=1, type="track,artist")
-        print(song_list)
         return {
             "uri": song_list["tracks"]["items"][0]["uri"],
             "name": song_list["tracks"]["items"][0]["name"],
             "url": song_list["tracks"]["items"][0]["external_urls"]["spotify"],
+        }
+
+    def search_uri(self, song_uri):
+        track = self.sp.track(song_uri)
+        print(track)
+        return {
+            "uri": track["uri"],
+            "name": track["name"],
+            "url": track["external_urls"]["spotify"],
         }
 
 

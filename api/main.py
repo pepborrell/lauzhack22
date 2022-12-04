@@ -57,6 +57,11 @@ def add_song(user, user_name, song_id):
     return 1
 
 
+@app.post("add_uri/{user}/{user_name}/{song_uri}")
+def add_uri(user, user_name, song_uri):
+    db.add_uri(user, user_name, song_uri)
+
+
 @app.post("/add_follower/{user_following}/{user_followed}")
 def add_follower(user_following, user_followed):
     db.add_follower(user_following, user_followed)
