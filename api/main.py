@@ -86,9 +86,9 @@ def get_liked_songs(user):
     db.get_user(user).get_liked_songs()
 
 
-@app.post("/add_post/")
-def add_post(post: PostBody):
-    db.add_post(Post(**post.dict()))
+@app.post("/add_post/{username}/{text}/{song}")
+def add_post(username: str, text: str, song: str):
+    db.add_post(Post(username=username, text=text, song=song))
 
 
 @app.get("/get_feed/")
