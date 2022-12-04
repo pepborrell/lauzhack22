@@ -54,7 +54,8 @@ class DB:
         self.spotify_sessions[user] = SpotifySession(token)
 
     def add_user(self, user_name: str):
-        self.users[user_name] = User(user_name)
+        if user_name not in self.users:
+            self.users[user_name] = User(user_name)
 
     def get_user(self, user_name: str):
         return self.users[user_name]
