@@ -21,7 +21,6 @@ def root():
 @app.post("/create_user/{user_name}")
 def create_user(user_name: str):
     db.add_user(user_name)
-    return 1
 
 
 @app.get("/get_user/{user_name}")
@@ -29,10 +28,9 @@ def get_user(user_name: str):
     return db.get_user(user_name).get_songs()
 
 
-@app.delete("/delete_song/{user_name}/{song_id}")
-def delete_song(user_name, song_id):
-    db.delete_song(user_name, song_id)
-    return 1
+@app.delete("/delete_song/{user_name}/{song_uri}")
+def delete_song(user_name, song_uri):
+    db.delete_song(user_name, song_uri)
 
 
 """@app.post("/login/{user_name}")

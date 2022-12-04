@@ -32,8 +32,10 @@ class User:
     def add_song(self, song: Song):
         self.songs.append(song)
 
-    def delete_song(self, song: Song):
-        self.songs.remove(song)
+    def delete_song(self, song_uri: str):
+        for song in self.songs:
+            if song_uri == song.uri:
+                self.songs.erase(song)
 
     def like_song(self, song: Song):
         self.liked_songs.append(song)
@@ -45,7 +47,6 @@ class User:
 class DB:
     def __init__(self):
         self.users = {}
-        self.songs = {}
         self.spotify_sessions = {}  # Interaction with spotify
         self.user_spotify_auth = {}
         self.search_engine = SpotifySession()
@@ -61,11 +62,9 @@ class DB:
     def get_user(self, user_name: str):
         return self.users[user_name]
 
-    def delete_song(self, user_name: str, song_id: str):
-        user = self.get_user(user_name)
-        song = self.get_song(song_id)
-        user.delete_song(song)
-        self.users[user_name] = user
+    def delete_song(self, user_name: str, song_uri: str):
+        user: User = self.get_user(user_name)
+        user.delete_song(song_uri)
 
     """    
         def login(self, user_name: str):
