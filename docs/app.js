@@ -14,7 +14,7 @@ button_queue_all.src = "icons/queue.png"
 button_queue_all.style.width = "30%"
 button_queue_all.style.height = "30%"
 button_queue_all.addEventListener('click', function () {
-        fetch(apiUrl+"queue_all/"+userName+"/", {
+        fetch(apiUrl+"queue_all/"+userName, {
             method: 'POST'
         });
 });
@@ -24,9 +24,9 @@ button_delete_all.src = "icons/cross.png"
 button_delete_all.style.width = "30%"
 button_delete_all.style.height = "30%"
 button_delete_all.addEventListener('click', function () {
-        fetch(apiUrl+"delete_all/"+userName+"/", {
-            method: 'POST'
-        });
+        fetch(apiUrl+"delete_all/"+userName, {
+            method: 'DELETE'
+        }).then(a => { window.location.reload(true);});;
 });
 
 top_buttons.appendChild(button_queue_all);
@@ -76,7 +76,7 @@ function createSongDiv(songData) {
     button_like.src="icons/heart.png"
     button_like.addEventListener('click', function () {
             var songUri = songData["uri"];
-            fetch(apiUrl+"like_song/"+userName+"/"+songUri+"/", {
+            fetch(apiUrl+"like_song/"+userName+"/"+songUri, {
                 method: 'POST'
             });
     });
@@ -88,7 +88,7 @@ function createSongDiv(songData) {
     button_queue.style.height = "30%"
     button_queue.addEventListener('click', function () {
             var songUri = songData["uri"];
-            fetch(apiUrl+"queue_song/"+userName+"/"+songUri+"/", {
+            fetch(apiUrl+"queue_song/"+userName+"/"+songUri, {
                 method: 'POST'
             });
     });
@@ -100,9 +100,9 @@ function createSongDiv(songData) {
     button_remove.style.height = "30%"
     button_remove.addEventListener('click', function () {
             var songUri = songData["uri"];
-            fetch(apiUrl+"delete_song/"+userName+"/"+songUri+"/", {
-                method: 'POST'
-            })/*.then(a => { window.location.reload(true);});*/
+            fetch(apiUrl+"delete_song/"+userName+"/"+songUri, {
+                method: 'DELETE'
+            }).then(a => { window.location.reload(true);});
     });
     buttons.appendChild(button_remove);
 

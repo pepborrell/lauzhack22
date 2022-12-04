@@ -34,7 +34,7 @@ def delete_song(user_name, song_uri):
     db.delete_song(user_name, song_uri)
 
 
-@app.post("/delete_all/{user_name}")
+@app.delete("/delete_all/{user_name}")
 def delete_all(user_name):
     db.delete_all(user_name)
 
