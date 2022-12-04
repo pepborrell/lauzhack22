@@ -91,6 +91,6 @@ def add_post(username: str, text: str, song: str):
     db.add_post(Post(username=username, text=text, song=song))
 
 
-@app.get("/get_feed/")
-def get_feed():
+@app.get("/get_feed/{username}")
+def get_feed(username):
     return db.get_feed()
