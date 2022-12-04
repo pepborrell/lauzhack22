@@ -36,7 +36,7 @@ class UserSpotifySession:
                                    scope = SCOPE, 
                                    client_id = CLIENT_ID, 
                                    client_secret = CLIENT_SECRET, 
-                                   redirect_uri = REDIRECT_URI))
+                                   redirect_uri = REDIRECT_URI, cache_path='./cache/.cache-'+USERNAME, ))
 
     def search(self, song_name):
         song_list = self.sp.search(q=song_name, limit=1, type="track,artist")
