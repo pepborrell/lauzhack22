@@ -11,7 +11,7 @@
 }
 
 .box {
-  background: var(--gray);
+  background: white;
   color: var(--black);
   font-family: helvetica;
   font-weight: bold;
