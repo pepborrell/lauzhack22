@@ -28,7 +28,7 @@ poster.addEventListener('click', function() {
 });
 
 function generateFeed() {
-    var getFeed = apiUrl + "get_feed";
+    var getFeed = apiUrl + userName + "/" + "get_feed";
     fetch(getFeed).then((response) => response.json())
     .then(a => {
         console.log("trying to get the feed"); 
