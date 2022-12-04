@@ -22,9 +22,11 @@ poster.addEventListener('click', function() {
     console.log(jsonPost); 
     fetch(addPost, {
         method: 'POST',
+    }).then(a=> {
+        document.getElementById('feed_div').innerText = ""; 
+        generateFeed(); 
+        window.location.reload();
     });
-    document.getElementById('feed_div').innerText = ""; 
-    generateFeed(); 
 });
 
 function generateFeed() {
