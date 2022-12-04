@@ -28,12 +28,11 @@ poster.addEventListener('click', function() {
 });
 
 function generateFeed() {
-    var getFeed = apiUrl + userName + "/" + "get_feed";
+    var getFeed = apiUrl + "get_feed/" + userName;
     fetch(getFeed).then((response) => response.json())
     .then(a => {
         console.log("trying to get the feed"); 
         var jsObject = JSON.parse(JSON.stringify(a));
-        console.log(jsObject[0]);
         generatePostList(jsObject);
     });
 }
