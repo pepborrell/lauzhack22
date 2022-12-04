@@ -1,4 +1,4 @@
-from data.data import DB
+from data.db import DB
 from data.feed import Post, PostBody
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
