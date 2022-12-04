@@ -1,3 +1,4 @@
+import json
 import os
 
 import spotipy
@@ -7,10 +8,12 @@ from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 
 class DummyCacheHandler(CacheHandler):
     def __init__(self, username: str) -> None:
-        self.password = os.environ["SPOTIPY_CACHE_" + username]
+        if "spotipy_cache_" + username not in os.environ:
+            raise NameError()
+        self.pass_dict = json.loads(os.environ["spotipy_cache_" + username])
 
     def get_cached_token(self):
-        return self.password
+        return self.pass_dict
 
     def save_token_to_cache(self, token_info):
         return NotImplementedError()
