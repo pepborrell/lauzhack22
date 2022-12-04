@@ -1,13 +1,22 @@
 from typing import List
 
-from .data import Song, User
+from pydantic import BaseModel
+
+from .data import Song
+
+
+class PostBody(BaseModel):
+    username: str
+    text: str
+    song: str
 
 
 class Post:
-    def __init__(self, user: User, text: str, song: Song) -> None:
-        self.user = user
+    def __init__(self, username: str, text: str, song: str) -> None:
+        self.username = username
         self.text = text
-        self.song = song
+        song_dict = self.search_engine.search(song)
+        self.song = Song(song_dict["uri"], song_dict["name"], song_dict["url"], recommender=self.username)
 
 
 class Feed:

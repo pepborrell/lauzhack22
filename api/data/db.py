@@ -1,3 +1,5 @@
+from .data import Song, User
+from .feed import Feed, Post
 from .spotify import SpotifySession, UserSpotifySession
 
 
@@ -7,6 +9,7 @@ class DB:
         self.spotify_sessions = {}  # Interaction with spotify
         self.user_spotify_auth = {}
         self.search_engine = SpotifySession()
+        self.feed = Feed()
 
     def set_token(self, user: str, token: str):
         self.spotify_sessions[user] = UserSpotifySession(user)
@@ -54,3 +57,9 @@ class DB:
     def queue_all(self, user: str):
         for song in self.users[user].songs:
             self.queue_song(user, song.uri)
+
+    def add_post(self, post: Post):
+        self.feed.add_post(post)
+
+    def get_feed(self, limit: int = 20):
+        return self.feed.get_feed(limit=limit)
