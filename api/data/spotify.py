@@ -10,7 +10,9 @@ class DummyCacheHandler(CacheHandler):
     def __init__(self, username: str) -> None:
         if "spotipy_cache_" + username not in os.environ:
             raise NameError()
-        self.pass_dict = json.loads(os.environ["spotipy_cache_" + username])
+        json_str = os.environ["spotipy_cache_" + username]
+        json_str = json_str.replace("'", '"')
+        self.pass_dict = json.loads(json_str)
 
     def get_cached_token(self):
         return self.pass_dict
