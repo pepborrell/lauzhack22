@@ -1,0 +1,26 @@
+.post_btn {
+    color: var(--black);
+    background: var(--white);
+  }
+
+  .feed_div {
+    padding: 2.5%; 
+    font-family: helvetica;
+    color: var(--black);
+    width: 60%;
+    margin: auto; 
+  }
+  .post_text {
+    padding: 1.5%; 
+    font-family: helvetica;
+    color: var(--black);
+    width: 85%;
+    margin: auto; 
+  }
+  .post_header {
+    padding: 1.5%; 
+    font-family: helvetica;
+    font-weight: bold;
+    color: var(--black);
+    margin: auto; 
+  }
