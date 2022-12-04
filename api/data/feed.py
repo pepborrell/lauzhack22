@@ -1,7 +1,7 @@
 from typing import List
 
 from pydantic import BaseModel
-from spotify import SpotifySession
+from .spotify import SpotifySession
 
 from .data import Song
 
