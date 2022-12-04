@@ -55,7 +55,7 @@ class UserSpotifySession:
                 client_id=CLIENT_ID,
                 client_secret=CLIENT_SECRET,
                 redirect_uri=REDIRECT_URI,
-                cache_path=DummyCacheHandler(USERNAME),
+                cache_handler=DummyCacheHandler(USERNAME),
             )
         )
 
