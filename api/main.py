@@ -76,7 +76,9 @@ def queue_all(user):
 
 
 @app.post("/like_song/{user}/{song_uri}")
-def like_song(user, song_uri):
+def like_song(user, song_uri: str):
+    print(user)
+    print(song_uri)
     db.like_song(user, song_uri)
     return 1
 

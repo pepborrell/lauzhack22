@@ -49,6 +49,7 @@ class DB:
         self.users[u_following].add_followed(u_followed)
 
     def like_song(self, user: str, song_uri: str):
+        print(self.spotify_sessions[user])
         self.spotify_sessions[user].like_song(song_uri)
 
     def queue_song(self, user: str, song_uri: str):

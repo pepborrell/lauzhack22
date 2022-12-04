@@ -72,6 +72,7 @@ class UserSpotifySession:
         return 1
 
     def like_song(self, song_URI):
+        print(song_URI)
         self.sp.current_user_saved_tracks_add([song_URI])
         return 1
 
