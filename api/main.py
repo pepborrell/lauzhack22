@@ -26,7 +26,7 @@ def create_user(user_name: str):
 
 @app.get("/get_user/{user_name}")
 def get_user(user_name: str):
-    return [db.get_user(user_name).get_songs()]
+    return db.get_user(user_name).get_songs()
 
 
 @app.delete("/delete_song/{user_name}/{song_id}")
