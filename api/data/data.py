@@ -1,4 +1,4 @@
-from .spotify import SpotifySession
+from .spotify import SpotifySession, UserSpotifySession
 
 
 class Song:
@@ -52,12 +52,12 @@ class DB:
         self.search_engine = SpotifySession()
 
     def set_token(self, user: str, token: str):
-        self.user_spotify_auth[user] = token
-        self.spotify_sessions[user] = SpotifySession(token)
+        self.spotify_sessions[user] = UserSpotifySession(user)
 
     def add_user(self, user_name: str):
         if user_name not in self.users:
             self.users[user_name] = User(user_name)
+        # self.set_token(user_name)
 
     def get_user(self, user_name: str):
         return self.users[user_name]
@@ -65,6 +65,9 @@ class DB:
     def delete_song(self, user_name: str, song_uri: str):
         user: User = self.get_user(user_name)
         user.delete_song(song_uri)
+
+    def delete_all(self, user_name: str):
+        self.users[user_name].songs = []
 
     """    
         def login(self, user_name: str):
@@ -86,8 +89,11 @@ class DB:
         self.users[u_following].add_followed(u_followed)
 
     def like_song(self, user: str, song_uri: str):
-        user_songs = self.users[user].songs
-        for song in user_songs:
-            if song.uri == song_uri:
-                self.users[user].like_song(song)
-                return
+        self.spotify_sessions[user].like_song(song_uri)
+
+    def queue_song(self, user: str, song_uri: str):
+        self.spotify_sessions[user].add_to_queue(song_uri)
+
+    def queue_all(self, user: str):
+        for song in self.users[user].songs:
+            self.queue_song(user, song.uri)
