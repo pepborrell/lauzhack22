@@ -57,7 +57,7 @@ def add_song(user, user_name, song_id):
     return 1
 
 
-@app.post("add_uri/{user}/{user_name}/{song_uri}")
+@app.post("/add_uri/{user}/{user_name}/{song_uri}")
 def add_uri(user, user_name, song_uri):
     db.add_uri(user, user_name, song_uri)
 
@@ -70,7 +70,7 @@ def add_follower(user_following, user_followed):
 
 @app.post("/queue_song/{user}/{song_uri}")
 def queue_song(user, song_uri):
-    song_uri = song_uri.replace('%3A', ':')
+    song_uri = song_uri.replace("%3A", ":")
     db.queue_song(user, song_uri)
     return 1
 
@@ -85,7 +85,7 @@ def queue_all(user):
 def like_song(user, song_uri: str):
     print(user)
     print(song_uri)
-    song_uri = song_uri.replace('%3A', ':')
+    song_uri = song_uri.replace("%3A", ":")
     db.like_song(user, song_uri)
     return 1
 
